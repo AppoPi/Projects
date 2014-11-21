@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import re
+
 
 ack = ["back", "lack", "pack", "rack", "sack", "tack", "yak", "black", "knack", "quack", "slack", "smack", "snack", "stack", "track", "whack", "attack"]
 ail = ["bale", "fail", "hail", "mail", "male", "nail", "pail", "tale", "rail", "sail", "stale", "scale", "snail", "whale", "detail", "email"]
@@ -32,10 +34,19 @@ un = ["bun", "fun", "gun", "one", "run", "son", "sun", "ton", "won", "done", "no
 phonics = [ack, ail, air, ake, all, an, annd, ap, ar, at, ate, ed, ell, en, et, inn, ing, it, ite, oh, ot, ound, oze, ub, un]
 
 input ='''
-A straggling few got up to go in deep despair. The rest/
-Clung to that hope which springs eternal in the human breast'
-They thought, if only Casey could get but a whack at that;
-They'd put up even money, now, with Casey at the bat.
+Thanks Anna for trying your hardest to make us sexy pole dancers.
+It's not your fault, haha...
+Watch more Anna! http://youtube.com/annaakana
+'''
+
+
+
+
+'''
+A straggling few got up to go in deep despair. The rest
+Clung to that hope which springs eternal in the human breast
+They thought, if only Casey could get but a whack at that
+They'd put up even money, now, with Casey at the bat
 '''
 
 
@@ -77,18 +88,43 @@ def rhymesWith(str1, str2):
 		return False;
 	return getPhonetic(str1) == getPhonetic(str2)
 
+def displaymatch(match):
+    if match is None:
+        return None
+    return '<Match: %r, groups=%r>' % (match.group(), match.groups())
 
-format = []
-for i in input.split("\n"):
-	str = i[i.rfind(' ') + 1:]
-	print str
-	if str != '':
-		format.append(str.replace('.-;!, ',''))
-for str in format:
-	while not str[-1:].isalpha():
-		str = str[:-1]
+def getFormatted():
+	format = []
+	print input.split('\n')
+	
+	for i,c in enumerate(input.split('\n')):
+		match = re.findall(r'[A-Za-z]+\W*\Z', i)
+		if match:
+			format[i] = match[0]
+	
+	
+	print i
+	'''
+		str = i[i.rfind(' ')+1:]
+		if str != '':
+			format.append(str)
+	
+	for i, str in enumerate(format):
+		format[i] = re.sub(r'\W', '', str)
+	'''
+	return format
 
-print format
+format = getFormatted()
+# print "--------Input--------", input
+# print "--------Output--------"
+# print format
+
+# p = re.compile("[a-z]")
+# for m in p.finditer('a1b2c3d4'):
+    # print m.start(), m.group()
+
+
+'''
 char = ['A','B','C','D','E','F','G','H','I']
 scheme = [None] * len(format)
 
@@ -106,7 +142,7 @@ print scheme
 
 
 
-
+'''
 
 
 
