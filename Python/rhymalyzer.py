@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+
 
 #TODO: Add to rhyming dictionary
 
@@ -45,7 +44,7 @@ A sickly silence fell upon the patrons of the game.
 
 A straggling few got up to go in deep despair. The rest
 Clung to that hope which springs eternal in the human breast;
-They thought, if only Casey could get but a whack at that –
+They thought, if only Casey could get but a whack at that -
 They'd put up even money, now, with Casey at the bat.
 
 this weighs a ton
