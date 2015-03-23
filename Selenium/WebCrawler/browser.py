@@ -18,9 +18,9 @@ if len(sys.argv) != 2:
 
 b = str(sys.argv[1])#raw_input('firefox/chrome/ie?: ')
 
-if b == 'firefox':
+if lower(b) == 'firefox':
 	driver = webdriver.Firefox()
-elif b == 'chrome':
+elif lower(b) == 'chrome':
 	driver = webdriver.Chrome()
 else: 
 	print 'Error: invalid browser selected.'
