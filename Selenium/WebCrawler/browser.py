@@ -1,48 +1,100 @@
 import time
 import sys
 from selenium import webdriver
-
 import socket
 from selenium.webdriver.support import expected_conditions as ec
-from selenium.common.exceptions import NoAlertPresentException
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import *
+from selenium.webdriver.support.ui import WebDriverWait
 
+import os
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 #Open website file
 file = open('websites.csv', 'r')
-
+b = ''
 if len(sys.argv) != 2:
-	print 'Error: browser unselected. firefox/chrome\nProper use: browser.py chrome OR browser.py firefox'
-	sys.exit()
+	#Default to chrome
+	b = 'chrome'
+else:
+	b = str(sys.argv[1]).lower()#raw_input('firefox/chrome/ie?: ')
 
-b = str(sys.argv[1])#raw_input('firefox/chrome/ie?: ')
-
-if lower(b) == 'firefox':
-	driver = webdriver.Firefox()
-elif lower(b) == 'chrome':
+if b == 'firefox':
+	# driver = webdriver.Firefox()
+	print os.path.join('C:\\','Program Files (x86)','Mozilla Firefox','firefox.exe')
+	binary = FirefoxBinary(os.path.join('C:\\','Program Files (x86)','Mozilla Firefox','firefox.exe'))
+	
+	driver = webdriver.Firefox(firefox_binary=binary)
+elif b == 'chrome':
 	driver = webdriver.Chrome()
 else: 
 	print 'Error: invalid browser selected.'
 	sys.exit()
 
-driver.set_page_load_timeout(30)
-
+socket.setdefaulttimeout(5)
+driver.set_page_load_timeout(5)
+	
 #Loop through million websites
 for x in range(0,1000000):
 	#Read in line from file
-	webpage = file.readline()
+	webpage = 'http://' + file.readline()[:-1]
 	try:
+		print webpage
 		#Open Chrome to webpage
-		driver.get('http://' + webpage)
-		time.sleep(2)
-		if ec.alert_is_present:
-			driver.switch_to_alert().dismiss()
-	except NoAlertPresentException:
-		pass
+		driver.get(webpage)
+	except NoSuchWindowException and KeyboardInterrupt:
+		sys.exit()
+	except socket.timeout:
+		print "Page load timeout"
+		print "Timed out on " + webpage
+		driver.close()
+		driver = webdriver.Chrome()
 	except Exception as e:
-		# Print
-		print str(x) + ': http://' + str(webpage)
+		print str(x) + ': http://' + webpage
 		print str(e)
-	
-	#End Loop
+	if b == 'firefox':
+		time.sleep(5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	# def waitForPageLoad(driver):
+	# d = driver
+	# d.implicitly_wait(2)        
+	# loaded = False
+	# for i in range(3):
+		# try: 
+			# el = d.find_element_by_tag_name("body")
+			# loaded = True
+			# break
+		# except NoSuchElementException, e: 
+			# print "crap"
+		# finally:
+			# d.implicitly_wait(3)
+	# return loaded
+
+
