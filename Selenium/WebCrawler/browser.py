@@ -9,6 +9,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 import os
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
+import selenium
+print selenium.__version__
+
+
 #Open website file
 file = open('websites.csv', 'r')
 b = ''
@@ -34,7 +38,7 @@ socket.setdefaulttimeout(5)
 driver.set_page_load_timeout(5)
 	
 #Loop through million websites
-for x in range(0,1000000):
+for x in range(0,10):
 	#Read in line from file
 	webpage = 'http://' + file.readline()[:-1]
 	try:
