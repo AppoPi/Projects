@@ -13,8 +13,8 @@ class MyLoop():
 			self.root.update() # always process new events
 			#Read in line from file
 			try:
-				print "Looping"
 				webpage = file.readline()
+				print webpage,
 				#Open Chrome to webpage
 				p = subprocess.Popen(["C:\Program Files (x86)\Google\Chrome\Application\Chrome.exe", webpage])
 				#Wait 5 seconds
@@ -23,16 +23,11 @@ class MyLoop():
 				p.kill()
 				time.sleep(.1)
 			except KeyboardInterrupt:
-				print '\nPausing...  (Hit ENTER to continue, type quit to exit.)'
-				try:
-					response = raw_input()
-					if response == 'quit':
-						sys.exit()
-					p.kill()
-					print 'Resuming...'
-				except:
-					print 'Resuming...'
-					continue
+				print '\nPausing...  (Hit ENTER to continue. Type quit then hit Enter to exit.)'
+				response = raw_input().strip()
+				if response == 'quit':
+					sys.exit()
+				continue
 		
 if __name__ == "__main__":
     root = Tk()

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+var one = 1;
+var two = 2;
+var sum = 0;
+
+while(true){
+	if (two % 2 == 0)
+		sum += two;
+	var temp = one + two;
+	one = two;
+	two = temp;
+	if (two > 4000000)
+		break;
+}
+document.write(sum);
+
+
+</script>
+
+</body>
+</html> 
