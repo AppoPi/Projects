@@ -108,7 +108,7 @@ while True:
 		break
 
 #Generate secret word
-secret = generate('wordlist.txt', diff)
+secret = generate('enable1.txt', diff)
 #Initialize board
 reveal = [False] * (len(secret))
 
