@@ -1,2 +1,3 @@
 Projects
 ========
+Random learning exercises

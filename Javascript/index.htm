@@ -1,0 +1,61 @@
+<html>
+    <style>
+        textarea, input {
+            width: 100%;
+            height: 100%;
+        }
+        
+        table, th, tr {
+            border: 1px solid black;
+            height: 90%
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        body {
+            background-color: lightblue;
+        }
+        
+        textarea, input {
+            color: #FFFFFF;
+            background-color: #626B6E;
+        }
+        
+        .button {
+            width: 100%;
+            height: 100%;
+            background-color: #4CAF50;
+        }
+        
+    </style>
+
+    <head>
+        <title>Page Title</title>
+    </head>
+    
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <textarea>Messages&#10;&#13;Messages&#10;&#13;Messages&#10;&#13;</textarea>
+                </td>
+                <td width="200">
+                    <textarea>User1&#10;&#13;User2&#10;&#13;User3&#10;&#13;User4&#10;&#13;</textarea>
+                </td>
+            </tr>
+            <tr>
+                <form action="test.asp" method="post">
+                <td>
+                    <input type="text" value="This is a message that has yet to be sent.&#10;&#13;" </input>
+                </td>
+                <td>
+                    <input type="submit" class ="button" value="Send">
+                </td>
+                </form>
+            </tr>
+        </table>
+    </body>
+</html>
