@@ -1,0 +1,50 @@
+
+<html>
+    <head>
+        <title> My website </title>
+        <link rel="stylesheet" type="text/css">
+        <style type="text/css">
+            .aaron {
+             font-family: Georgia, "Times New Roman", Times, serif;
+             font-size: 50px;
+             font-style: italic;
+             font-weight: bold;
+             color: #00A201;
+            }
+        </style>
+    </head>
+
+
+<p class="aaron" id="demo">
+This is a paragraph on my website. This button creates a table.
+</p>
+
+<script>
+function myFunction() {
+    var body = document.body,
+        tbl  = document.createElement('table');
+    tbl.style.width  = '100px';
+    tbl.style.border = '1px solid black';
+
+    for(var i = 0; i < 3; i++){
+        var tr = tbl.insertRow();
+        for(var j = 0; j < 2; j++){
+            if(i == 2 && j == 1){
+                break;
+            } else {
+                var td = tr.insertCell();
+                td.appendChild(document.createTextNode('Cell'));
+                td.style.border = '1px solid black';
+                if(i == 1 && j == 1){
+                    td.setAttribute('rowSpan', '2');
+                }
+            }
+        }
+    }
+    body.appendChild(tbl);
+}
+</script>
+
+<button onclick="myFunction()">Click me</button>
+
+</html>
